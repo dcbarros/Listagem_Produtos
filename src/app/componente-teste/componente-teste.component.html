@@ -1,0 +1,24 @@
+<p>{{nome | uppercase}}</p>
+<p>{{obj.nome | lowercase}}</p>
+<p>{{obj | json}}</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Média</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let a of alunos">
+            <td>{{a.nome}}</td>
+            <td>{{a.nota1}}</td>
+            <td>{{a.nota2}}</td>
+            <td [ngClass]="{'media-aprovado': (a | media) >= 7, 'media-final': ((a | media) >= 4 && (a | media) < 7), 'media-reprovado': (a | media) < 4}">
+                {{a | media}}
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+<form [formGroup]="produtoForm" class="container mt-3">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Nome do produto</span>
+        <input type="text" class="form-control" placeholder="Nome do produto" formControlName="nome">
+    </div>
+    @if(produtoForm.get('nome').hasError('required') && produtoForm.get('nome').touched){
+        <span class="alert">O campo é obrigatório</span>
+    }
+    <div class="input-group mb-3">
+        <span class="input-group-text">Valor do produto</span>
+        <input type="text" class="form-control" placeholder="Valor em R$ 00.00" formControlName="valor">
+    </div>
+    @if(produtoForm.get('valor').hasError('required') && produtoForm.get('valor').touched){
+        <span class="alert">O campo é obrigatório</span>
+    }
+    @if(produtoForm.get('valor').hasError('min') && produtoForm.get('valor').touched){
+        <span class="alert">O valor deve está no mínimo a R$0.01</span>
+    }
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-primary col me-1" type="submit" (click)="cadastro()" [hidden]="disableButton">Cadastrar</button>
+        <button class="btn btn-primary col me-1" type="submit" [hidden]="!disableButton" (click)="alterar()">Atualizar</button>
+        <button class="btn btn-danger col me-1" type="submit" [hidden]="!disableButton" (click)="remover()">Remover</button>
+        <button class="btn btn-primary col me-1" type="submit" (click)="cancelar()" [hidden]="!disableButton">Cancelar</button>
+    </div>
+</form>
+
+<app-component-table [items]="produtos" (selectItem)="onProdutoSelecionado($event)"></app-component-table>

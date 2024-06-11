@@ -1,0 +1,22 @@
+<div class="container text-center">
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Nome do Produto</th>
+                <th>Valor</th>
+                <th>Selecionar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(produto of items; track $index){
+                <tr>
+                    <td class="text-center">{{produto.id}}</td>
+                    <td class="text-center">{{produto.nome}}</td>
+                    <td class="text-center">{{produto.valor | currency:'BRL'}}</td>
+                    <td class="text-center"><button class="btn btn-secondary" (click)="selecionarProduto(produto)">Selecionar</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
